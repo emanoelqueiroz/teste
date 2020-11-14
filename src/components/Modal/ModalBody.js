@@ -5,7 +5,7 @@ const Body = styled.div`
 max-height: calc(100vh - 150px);
 padding: 13px;
 overflow: auto;
-`
+`;
 
 class ModalBody extends Component {
     render() {
@@ -13,8 +13,8 @@ class ModalBody extends Component {
             <Body>
                 {this.props.children}
             </Body>
-        )
+        );
     }
 }
 
-export default ModalBody 
+export default ModalBody;

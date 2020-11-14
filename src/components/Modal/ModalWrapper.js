@@ -1,5 +1,14 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import React, { Component } from "react";
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
 
 const Backdrop = styled.div`
     position: fixed;
@@ -11,13 +20,14 @@ const Backdrop = styled.div`
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.5);
-`
+    animation: 0.5s ${fadeIn} forwards;
+`;
 
 const ModalDialog = styled.div`
     width: 600px;
     max-width: 90%;
     background: #fff;
-`
+`;
 
 class ModalWrapper extends Component {
     render() {

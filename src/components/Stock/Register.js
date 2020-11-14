@@ -11,12 +11,13 @@ import ModalBody from "../Modal/ModalBody";
 import ModalFooter from "../Modal/ModalFooter";
 import ModalHeader from "../Modal/ModalHeader";
 import ModalWrapper from "../Modal/ModalWrapper";
+import InputImage from "../InputImage";
 
 const Schema = Yup.object().shape({
     title: Yup.string()
         .max(100, 'Deve conter menos de 100 caracteres!')
-        .required('Obrigatório'),
-    barCode: Yup.number().required('Obrigatório').integer('Precisa ser um número inteiro!'),
+        .required('Campo obrigatório!'),
+    barCode: Yup.number().integer('Precisa ser um número inteiro!'),
     data: Yup.date().max(new Date(), 'Não pode ser maior que a data atual!')
 });
 
@@ -26,9 +27,15 @@ class Register extends Component {
         super(props);
 
         this.handleClose = this.handleClose.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleClose() {
+        this.props.onClose();
+    }
+
+    handleSubmit(data) {
+        this.props.onRegistration(data);
         this.props.onClose();
     }
 
@@ -40,16 +47,18 @@ class Register extends Component {
                 initialValues={{
                     title: '',
                     description: '',
+                    image: 'https://observatoriodegames.uol.com.br/wp-content/uploads/2020/03/18_Event_Cloud.0.jpg',
                     weight: 0,
                     barCode: 0,
                     value: 0,
+                    category: 'Componente Elétrico',
+                    data: "2020-11-04",
                 }}
                 validationSchema={Schema}
                 onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
+                        // alert(JSON.stringify(values, null, 2));
                         setSubmitting(false);
-                    }, 400);
+                        this.handleSubmit(values);
                 }}
             >
                 {({
@@ -58,6 +67,7 @@ class Register extends Component {
                     touched,
                     handleChange,
                     handleBlur,
+                    setFieldValue,
                     isSubmitting,
                 }) => (
                         <Form>
@@ -67,21 +77,15 @@ class Register extends Component {
                                     <Button type="button" onClick={this.handleClose} flat>X</Button>
                                 </ModalHeader>
                                 <ModalBody>
+                                    <InputImage type="file"
+                                        name="image"
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        setFieldValue={setFieldValue}
+                                        image={values.image}></InputImage>
                                     <InputBlock>
                                         <Label>
-                                            Imagem do Produto
-                                            <Input
-                                                type="file"
-                                                name="image"
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.image}
-                                            />
-                                        </Label>
-                                    </InputBlock>
-                                    <InputBlock>
-                                        <Label>
-                                            Título do produto
+                                            Título do produto *
                                             <Input
                                                 type="text"
                                                 name="title"

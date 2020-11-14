@@ -22,8 +22,8 @@ class PageTitle extends Component {
                     </Title>
                 </Section>
             </TitleWrapper>
-        )
+        );
     }
 }
 
-export default PageTitle
+export default PageTitle;

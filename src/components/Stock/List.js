@@ -3,6 +3,7 @@ import Button from "../Button";
 import Section from "../Section";
 import Table from "../Table/Table";
 import TableActionsHeader from "../Table/TableActionsHeader";
+import TableImage from "../Table/TableImage";
 import Td from "../Table/Td";
 import Th from "../Table/Th";
 import Tr from "../Table/Tr";
@@ -18,7 +19,7 @@ class List extends Component {
             produtos: [
                 {
                     id: 1,
-                    data: new Date(),
+                    data: "2020-11-04",
                     image: '',
                     title: 'Bobina',
                     description: 'Bobina',
@@ -27,7 +28,7 @@ class List extends Component {
                 },
                 {
                     id: 2,
-                    data: new Date(),
+                    data: "2020-11-04",
                     image: '',
                     title: 'Lampida',
                     description: 'Lampida',
@@ -36,7 +37,7 @@ class List extends Component {
                 },
                 {
                     id: 3,
-                    data: new Date(),
+                    data: "2020-11-04",
                     image: '',
                     title: 'Tomada',
                     description: 'Tomada',
@@ -45,7 +46,7 @@ class List extends Component {
                 },
                 {
                     id: 4,
-                    data: new Date(),
+                    data: "2020-11-04",
                     image: '',
                     title: 'Circuito',
                     description: 'Circuito',
@@ -58,6 +59,7 @@ class List extends Component {
         this.openRegister = this.openRegister.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
+        this.handleRegistration = this.handleRegistration.bind(this);
     }
 
     openRegister() {
@@ -66,6 +68,21 @@ class List extends Component {
 
     handleClose() {
         this.setState({ isRegistering: false });
+    }
+
+    handleRegistration(data) {
+        data.id = this.state.produtos.reduce((acc, item) => {
+            if (item.id > acc) acc = item.id;
+            return acc + 1;
+        }, 0);
+
+        const produtos = [...this.state.produtos];
+        produtos.push(data);
+
+        this.setState({
+            ...this.state,
+            produtos
+        });
     }
 
     formatMoney(value) {
@@ -84,7 +101,7 @@ class List extends Component {
     render() {
         return (
             <Section>
-                <Register open={this.state.isRegistering} onClose={this.handleClose} />
+                <Register open={this.state.isRegistering} onClose={this.handleClose} onRegistration={this.handleRegistration} />
                 <TableActionsHeader>
                     <h2>Produtos</h2>
                     <Button onClick={this.openRegister}>Novo</Button>
@@ -95,7 +112,7 @@ class List extends Component {
                             <Th>Cód.</Th>
                             <Th center>Data de Aquisição</Th>
                             <Th center>Imagem</Th>
-                            <Th>Descrição</Th>
+                            <Th>Título</Th>
                             <Th>Categoria</Th>
                             <Th right>Valor</Th>
                             <Th right>Ações</Th>
@@ -105,8 +122,10 @@ class List extends Component {
                         {this.state.produtos.length ? this.state.produtos.map(item => (
                             <Tr key={item.id}>
                                 <Td>{item.id}</Td>
-                                <Td center>{item.data.toLocaleDateString()}</Td>
-                                <Td center>{item.image}</Td>
+                                <Td center>{item.data}</Td>
+                                <Td center>
+                                    <TableImage src={item.image} />
+                                </Td>
                                 <Td>{item.title}</Td>
                                 <Td>{item.category}</Td>
                                 <Td right>{this.formatMoney(item.value)}</Td>

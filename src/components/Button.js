@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
 // TODO: hovers
 const Button = styled.button`
@@ -44,6 +44,6 @@ const Button = styled.button`
     margin-left: 8px;
   }
 
-`
+`;
 
-export default Button
+export default Button;
