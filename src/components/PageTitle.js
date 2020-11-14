@@ -8,7 +8,6 @@ const TitleWrapper = styled.div`
 `;
 
 const Title = styled.h1`
-    color: #342b82;
     margin: 0;
     font-size: 34px;
 `;

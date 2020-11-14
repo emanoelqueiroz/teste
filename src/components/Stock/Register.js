@@ -21,6 +21,7 @@ const Schema = Yup.object().shape({
 });
 
 class Register extends Component {
+
     constructor(props) {
         super(props);
 
@@ -180,10 +181,11 @@ class Register extends Component {
                                 </ModalFooter>
                             </ModalWrapper>
                         </Form>
-                    )}
+                    )
+                }
             </Formik>
-        )
+        );
     }
 }
 
-export default Register 
+export default Register

@@ -9,7 +9,6 @@ const Button = styled.button`
   border: 0;
   font-size: 11px;
   padding: 8px 13px;
-  text-transform: uppercase;
   transition: 0.2s;
 
   &:hover {
