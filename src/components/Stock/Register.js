@@ -1,4 +1,6 @@
 import { Form, Formik } from "formik";
+import * as Yup from 'yup';
+
 import React, { Component } from "react";
 import Button from "../Button";
 import Input from "../Input";
@@ -9,6 +11,14 @@ import ModalBody from "../Modal/ModalBody";
 import ModalFooter from "../Modal/ModalFooter";
 import ModalHeader from "../Modal/ModalHeader";
 import ModalWrapper from "../Modal/ModalWrapper";
+
+const Schema = Yup.object().shape({
+    title: Yup.string()
+        .max(100, 'Deve conter menos de 100 caracteres!')
+        .required('Obrigatório'),
+    barCode: Yup.number().required('Obrigatório').integer('Precisa ser um número inteiro!'),
+    data: Yup.date().max(new Date(), 'Não pode ser maior que a data atual!')
+});
 
 class Register extends Component {
     constructor(props) {
@@ -26,15 +36,14 @@ class Register extends Component {
 
         return (
             <Formik
-                initialValues={{ 
-                    title: '', 
-                    description: '', 
-                    weight: 0, 
+                initialValues={{
+                    title: '',
+                    description: '',
+                    weight: 0,
                     barCode: 0,
                     value: 0,
-                 }}
-                validate={values => {
                 }}
+                validationSchema={Schema}
                 onSubmit={(values, { setSubmitting }) => {
                     setTimeout(() => {
                         alert(JSON.stringify(values, null, 2));
@@ -108,7 +117,7 @@ class Register extends Component {
                                         <Label>
                                             Peso do produto (KG)
                                             <Input
-                                                type="text"
+                                                type="number"
                                                 name="weight"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
@@ -120,13 +129,16 @@ class Register extends Component {
                                         <Label>
                                             Código de Barras
                                             <Input
-                                                type="text"
+                                                type="number"
                                                 name="barCode"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 value={values.barCode}
                                             />
                                         </Label>
+                                        <InputError>
+                                            {errors.barCode && touched.barCode && errors.barCode}
+                                        </InputError>
                                     </InputBlock>
                                     <InputBlock>
                                         <Label>
@@ -157,6 +169,9 @@ class Register extends Component {
                                                 value={values.data}
                                             />
                                         </Label>
+                                        <InputError>
+                                            {errors.data && touched.data && errors.data}
+                                        </InputError>
                                     </InputBlock>
                                 </ModalBody>
                                 <ModalFooter>
