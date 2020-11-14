@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 const Button = styled.button`
   cursor: pointer;
   color: #fff;
-  background: #4185f4;
+  background: #785afc;
   border-radius: 2px;
   border: 0;
   font-size: 11px;
@@ -13,7 +13,7 @@ const Button = styled.button`
   transition: 0.2s;
 
   &:hover {
-    background-color: #4185f4;
+    background-color: #785afc;
   }
 
   ${props => props.default && css`
