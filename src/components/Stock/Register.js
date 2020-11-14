@@ -42,23 +42,25 @@ class Register extends Component {
     render() {
         if (!this.props.open) return null;
 
+        const initialValues = {
+            id: null,
+            title: '',
+            description: '',
+            image: 'https://observatoriodegames.uol.com.br/wp-content/uploads/2020/03/18_Event_Cloud.0.jpg',
+            weight: 0,
+            barCode: 0,
+            value: 0,
+            category: 'Componente Elétrico',
+            data: "2020-11-04",
+        };
+
         return (
             <Formik
-                initialValues={{
-                    title: '',
-                    description: '',
-                    image: 'https://observatoriodegames.uol.com.br/wp-content/uploads/2020/03/18_Event_Cloud.0.jpg',
-                    weight: 0,
-                    barCode: 0,
-                    value: 0,
-                    category: 'Componente Elétrico',
-                    data: "2020-11-04",
-                }}
+                initialValues={initialValues}
                 validationSchema={Schema}
                 onSubmit={(values, { setSubmitting }) => {
-                        // alert(JSON.stringify(values, null, 2));
-                        setSubmitting(false);
-                        this.handleSubmit(values);
+                    setSubmitting(false);
+                    this.handleSubmit(values);
                 }}
             >
                 {({

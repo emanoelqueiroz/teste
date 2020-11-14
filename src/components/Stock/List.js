@@ -59,6 +59,7 @@ class List extends Component {
         this.openRegister = this.openRegister.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
+        this.updateItem = this.updateItem.bind(this);
         this.handleRegistration = this.handleRegistration.bind(this);
     }
 
@@ -98,10 +99,17 @@ class List extends Component {
         });
     }
 
+    updateItem(item) {
+        console.log(item);
+    }
+
     render() {
         return (
             <Section>
-                <Register open={this.state.isRegistering} onClose={this.handleClose} onRegistration={this.handleRegistration} />
+                <Register
+                    open={this.state.isRegistering}
+                    onClose={this.handleClose}
+                    onRegistration={this.handleRegistration} />
                 <TableActionsHeader>
                     <h2>Produtos</h2>
                     <Button onClick={this.openRegister}>Novo</Button>
@@ -130,6 +138,7 @@ class List extends Component {
                                 <Td>{item.category}</Td>
                                 <Td right>{this.formatMoney(item.value)}</Td>
                                 <Td right>
+                                    <Button onClick={() => this.updateItem(item)}>Editar</Button>
                                     <Button danger onClick={() => this.deleteItem(item)}>Excluir</Button>
                                 </Td>
                             </Tr>
