@@ -16,8 +16,8 @@ const Circle = styled.label`
     &:after {
         content: '+';
         position: absolute;
-        top: 5px;
-        right: 5px;
+        top: 10px;
+        right: 10px;
         width: 20px;
         height: 20px;
         color: #fff;
@@ -62,7 +62,7 @@ class InputImage extends Component {
 
     render() {
         return (
-            <Circle style={{ backgroundImage: `url(${this.props.image})` }}>
+            <Circle style={{ backgroundImage: `url(${this.props.image})` }} size={150}>
                 <Input type="file" accept=".jpg, .png, .jpeg" {...this.props} onChange={this.handleChange} />
             </Circle>
         );

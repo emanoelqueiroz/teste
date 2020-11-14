@@ -27,6 +27,8 @@ const ModalDialog = styled.div`
     width: 600px;
     max-width: 90%;
     background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 8px -3px #3e3e3e;
 `;
 
 class ModalWrapper extends Component {
