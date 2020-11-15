@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Section from './Section';
 
 const TitleWrapper = styled.div`
-    background-color: #785afc;
+    color: #785afc;
     padding: 21px 0;
 `;
 
