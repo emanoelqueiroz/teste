@@ -171,7 +171,7 @@ class Register extends Component {
                                     </InputBlock>
                                     <InputBlock>
                                         <Label>
-                                            Peso do produto (KG)
+                                            Peso (KG)
                                             <Input
                                                 type="number"
                                                 name="weight"
@@ -213,7 +213,7 @@ class Register extends Component {
                                     </InputBlock>
                                     <InputBlock>
                                         <Label>
-                                            Valor (monetário/R$)
+                                            Valor (R$)
                                             <Input
                                                 type="text"
                                                 name="value"
