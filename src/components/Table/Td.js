@@ -2,7 +2,12 @@ import styled, { css } from 'styled-components'
 
 const Td = styled.td`
     padding: 8px; 
-    border-left: 3px solid #7b6cfa;    
+    border-left: 3px solid #7b6cfa; 
+
+    ${props => props.noBorder && css`
+        border-left: 0;
+        text-align: center;
+    `}
 
     @media screen and (min-width: 615px) {
         border: 0;
