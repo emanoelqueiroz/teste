@@ -12,7 +12,7 @@ const Header = styled.div`
     h3 {
         margin: 0;
     }
-`
+`;
 
 class ModalHeader extends Component {
     render() {
@@ -20,8 +20,8 @@ class ModalHeader extends Component {
             <Header>
                 {this.props.children}
             </Header>
-        )
+        );
     }
 }
 
-export default ModalHeader 
+export default ModalHeader; 

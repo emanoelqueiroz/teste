@@ -44,8 +44,6 @@ class Register extends Component {
     render() {
         if (!this.props.open) return null;
 
-        console.log(this.props.initialValues);
-
         const initialValues = {
             id: null,
             title: '',
@@ -58,9 +56,9 @@ class Register extends Component {
                 comprimento: 0,
             },
             barCode: 0,
-            value: 0,
             category: 0,
-            data: "2020-11-04",
+            value: 0,
+            data: '',
             ...this.props.initialValues
         };
 
@@ -131,8 +129,8 @@ class Register extends Component {
                                                 <InputBlock child>
                                                     Altura
                                                     <Input
-                                                        type="text"
-                                                        name="altura"
+                                                        type="number"
+                                                        name="medida.altura"
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
                                                         value={values.medida.altura}
@@ -143,8 +141,8 @@ class Register extends Component {
                                                 <InputBlock child>
                                                     Largura
                                                     <Input
-                                                        type="text"
-                                                        name="largura"
+                                                        type="number"
+                                                        name="medida.largura"
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
                                                         value={values.medida.largura}
@@ -155,8 +153,8 @@ class Register extends Component {
                                                 <InputBlock child>
                                                     Comprimento
                                                     <Input
-                                                        type="text"
-                                                        name="comprimento"
+                                                        type="number"
+                                                        name="medida.comprimento"
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
                                                         value={values.medida.comprimento}

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import Button from "../Button";
 import Section from "../Section";
 import Table from "../Table/Table";
@@ -17,17 +18,7 @@ class List extends Component {
         this.state = {
             isRegistering: false,
             initialValues: {},
-            produtos: [
-                {
-                    id: 1,
-                    data: "2020-11-04",
-                    image: '',
-                    title: 'Bobina',
-                    description: 'Bobina',
-                    category: 1,
-                    value: 60,
-                }
-            ]
+            produtos: [],
         };
 
         this.openRegister = this.openRegister.bind(this);
@@ -50,7 +41,7 @@ class List extends Component {
         return this.state.produtos.reduce((acc, item) => {
             if (item.id > acc) acc = item.id;
             return acc + 1;
-        }, 0);
+        }, 1);
     }
 
     handleRegistration(data) {
@@ -74,6 +65,11 @@ class List extends Component {
 
     formatMoney(value) {
         return value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+    }
+
+    formatData(value) {
+        if (!value) return 'Sem data cadastrada';
+        return new Date(value + ' 00:00').toLocaleDateString();
     }
 
     getCategory(category) {
@@ -118,6 +114,8 @@ class List extends Component {
                     <h2>Produtos</h2>
                     <Button onClick={this.openRegister}>Novo</Button>
                 </TableActionsHeader>
+                {this.state.produtos.length
+                    ? `Mostrando ${this.state.produtos.length} item(s)` : null}
                 <Table>
                     <thead>
                         <Tr>
@@ -139,7 +137,7 @@ class List extends Component {
                                 </Td>
                                 <Td center>
                                     <Th mobile>Data de Aquisição</Th>
-                                    {item.data}
+                                    {this.formatData(item.data)}
                                 </Td>
                                 <Td center>
                                     <Th mobile>Imagem</Th>
@@ -165,7 +163,7 @@ class List extends Component {
                             </Tr>
                         )) :
                             <Tr>
-                                <Td colSpan="7" center>
+                                <Td colSpan="7" center noBorder>
                                     Nenhum registro existente!
                                 </Td>
                             </Tr>

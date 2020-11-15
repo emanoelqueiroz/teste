@@ -2,16 +2,17 @@ import styled, { css } from 'styled-components'
 
 const Td = styled.td`
     padding: 8px; 
-    border-left: 3px solid #7b6cfa;
-    
+    border-left: 3px solid #7b6cfa;    
 
     @media screen and (min-width: 615px) {
         border: 0;
         padding: 8px;
 
-        &:first-child {
-            border-left: 3px solid #7b6cfa;
-        }
+        ${props => !props.noBorder && css`
+            &:first-child {
+                border-left: 3px solid #7b6cfa;
+            }
+        `}
 
         ${props => props.left && css`
             text-align: left;

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
+import React, { Component } from "react";
 
-const Th = styled.th`
+const ThTitle = styled.th`
     display: none;
     text-align: left;
     padding: 8px;
@@ -20,16 +21,34 @@ const Th = styled.th`
     @media screen and (min-width: 615px) {
         display: table-cell;
     }
+`;
 
-    ${props => props.mobile && css`
-       display: block;
-       padding: 0;
-       margin-bottom: 5px;
+const Span = styled.span`
+    display: block;
+    padding: 0;
+    margin-bottom: 5px;
+    font-weight: 700;
 
-        @media screen and (min-width: 615px) {
-            display: none;
-        }
-    `}
-`
+    @media screen and (min-width: 615px) {
+        display: none;
+    }
+ `;
 
-export default Th
+class Th extends Component {
+    render() {
+        if (this.props.mobile)
+            return (
+                <Span {...this.props}>
+                    {this.props.children}
+                </Span>
+            );
+
+        return (
+            <ThTitle {...this.props}>
+                {this.props.children}
+            </ThTitle>
+        );
+    }
+}
+
+export default Th;
