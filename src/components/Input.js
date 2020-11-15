@@ -12,5 +12,4 @@ const Input = styled.input`
         text-align: right;
     `}
 `
-
 export default Input

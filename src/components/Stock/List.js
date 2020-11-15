@@ -24,7 +24,7 @@ class List extends Component {
                     image: '',
                     title: 'Bobina',
                     description: 'Bobina',
-                    category: 'Componente Elétrico',
+                    category: 1,
                     value: 60,
                 }
             ]
@@ -74,6 +74,19 @@ class List extends Component {
 
     formatMoney(value) {
         return value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+    }
+
+    getCategory(category) {
+        switch (Number(category)) {
+            case 1:
+                return 'Componente Eletrico';
+            case 2:
+                return 'Parafuso';
+            case 3:
+                return 'Placa';
+            default:
+                return 'Sem categoria';
+        }
     }
 
     deleteItem(item) {
@@ -138,7 +151,7 @@ class List extends Component {
                                 </Td>
                                 <Td>
                                     <Th mobile>Categoria</Th>
-                                    {item.category}
+                                    {this.getCategory(item.category)}
                                 </Td>
                                 <Td right>
                                     <Th mobile>Valor</Th>

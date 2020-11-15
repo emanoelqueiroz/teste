@@ -13,6 +13,7 @@ import ModalHeader from "../Modal/ModalHeader";
 import ModalWrapper from "../Modal/ModalWrapper";
 import InputImage from "../InputImage";
 import noImage from "../../no-image.png";
+import Select from "../Select";
 
 const Schema = Yup.object().shape({
     title: Yup.string()
@@ -51,9 +52,14 @@ class Register extends Component {
             description: '',
             image: noImage,
             weight: 0,
+            medida: {
+                altura: 0,
+                largura: 0,
+                comprimento: 0,
+            },
             barCode: 0,
             value: 0,
-            category: 'Componente Elétrico',
+            category: 0,
             data: "2020-11-04",
             ...this.props.initialValues
         };
@@ -92,7 +98,7 @@ class Register extends Component {
                                         image={values.image}></InputImage>
                                     <InputBlock>
                                         <Label>
-                                            Título do produto *
+                                            Título *
                                             <Input
                                                 type="text"
                                                 name="title"
@@ -107,7 +113,7 @@ class Register extends Component {
                                     </InputBlock>
                                     <InputBlock>
                                         <Label>
-                                            Descrição longa
+                                            Descrição
                                             <Input
                                                 type="text"
                                                 name="description"
@@ -120,6 +126,44 @@ class Register extends Component {
                                     <InputBlock>
                                         <Label>
                                             Medidas
+
+                                            <InputBlock parent>
+                                                <InputBlock child>
+                                                    Altura
+                                                    <Input
+                                                        type="text"
+                                                        name="altura"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.medida.altura}
+                                                        number
+                                                    />
+                                                </InputBlock>
+
+                                                <InputBlock child>
+                                                    Largura
+                                                    <Input
+                                                        type="text"
+                                                        name="largura"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.medida.largura}
+                                                        number
+                                                    />
+                                                </InputBlock>
+
+                                                <InputBlock child>
+                                                    Comprimento
+                                                    <Input
+                                                        type="text"
+                                                        name="comprimento"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.medida.comprimento}
+                                                        number
+                                                    />
+                                                </InputBlock>
+                                            </InputBlock>
                                         </Label>
                                         <InputError>
                                             {errors.password && touched.password && errors.password}
@@ -155,7 +199,16 @@ class Register extends Component {
                                     <InputBlock>
                                         <Label>
                                             Categoria
-                                            {/* Select */}
+                                            <Select
+                                                name="category"
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.category}>
+                                                <option value="0">Selecione uma Categoria</option>
+                                                <option value="1">Componente Eletronico</option>
+                                                <option value="2">Parafuso</option>
+                                                <option value="3">Placa</option>
+                                            </Select>
                                         </Label>
                                     </InputBlock>
                                     <InputBlock>
