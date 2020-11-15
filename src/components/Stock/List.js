@@ -16,6 +16,7 @@ class List extends Component {
 
         this.state = {
             isRegistering: false,
+            initialValues: {},
             produtos: [
                 {
                     id: 1,
@@ -61,6 +62,7 @@ class List extends Component {
         this.deleteItem = this.deleteItem.bind(this);
         this.updateItem = this.updateItem.bind(this);
         this.handleRegistration = this.handleRegistration.bind(this);
+        this.newId = this.newId.bind(this);
     }
 
     openRegister() {
@@ -71,18 +73,29 @@ class List extends Component {
         this.setState({ isRegistering: false });
     }
 
-    handleRegistration(data) {
-        data.id = this.state.produtos.reduce((acc, item) => {
+    newId() {
+        return this.state.produtos.reduce((acc, item) => {
             if (item.id > acc) acc = item.id;
             return acc + 1;
         }, 0);
+    }
 
+    handleRegistration(data) {
         const produtos = [...this.state.produtos];
-        produtos.push(data);
+
+        if (!data.id)
+            data.id = this.newId();
+
+        const produtoIndex = produtos.findIndex(item => item.id === data.id);
+        if (produtoIndex > -1)
+            produtos[produtoIndex] = data;
+        else
+            produtos.push(data);
 
         this.setState({
             ...this.state,
-            produtos
+            produtos,
+            initialValues: {}
         });
     }
 
@@ -100,7 +113,11 @@ class List extends Component {
     }
 
     updateItem(item) {
-        console.log(item);
+        this.setState({
+            ...this.state,
+            initialValues: item,
+            isRegistering: true
+        })
     }
 
     render() {
@@ -108,6 +125,7 @@ class List extends Component {
             <Section>
                 <Register
                     open={this.state.isRegistering}
+                    initialValues={this.state.initialValues}
                     onClose={this.handleClose}
                     onRegistration={this.handleRegistration} />
                 <TableActionsHeader>

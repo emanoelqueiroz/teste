@@ -42,6 +42,8 @@ class Register extends Component {
     render() {
         if (!this.props.open) return null;
 
+        console.log(this.props.initialValues);
+
         const initialValues = {
             id: null,
             title: '',
@@ -52,6 +54,7 @@ class Register extends Component {
             value: 0,
             category: 'Componente Elétrico',
             data: "2020-11-04",
+            ...this.props.initialValues
         };
 
         return (
