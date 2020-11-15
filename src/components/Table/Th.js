@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 const Th = styled.th`
     text-align: left;
-    padding: 8px; 
+    padding: 8px;
 
     ${props => props.left && css`
         text-align: left;

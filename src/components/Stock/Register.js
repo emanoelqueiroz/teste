@@ -12,6 +12,7 @@ import ModalFooter from "../Modal/ModalFooter";
 import ModalHeader from "../Modal/ModalHeader";
 import ModalWrapper from "../Modal/ModalWrapper";
 import InputImage from "../InputImage";
+import noImage from "../../no-image.png";
 
 const Schema = Yup.object().shape({
     title: Yup.string()
@@ -48,7 +49,7 @@ class Register extends Component {
             id: null,
             title: '',
             description: '',
-            image: 'https://observatoriodegames.uol.com.br/wp-content/uploads/2020/03/18_Event_Cloud.0.jpg',
+            image: noImage,
             weight: 0,
             barCode: 0,
             value: 0,
@@ -62,6 +63,7 @@ class Register extends Component {
                 initialValues={initialValues}
                 validationSchema={Schema}
                 onSubmit={(values, { setSubmitting }) => {
+                    values.value = Number(values.value || 0);
                     setSubmitting(false);
                     this.handleSubmit(values);
                 }}
@@ -165,6 +167,7 @@ class Register extends Component {
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 value={values.value}
+                                                number
                                             />
                                         </Label>
                                     </InputBlock>
