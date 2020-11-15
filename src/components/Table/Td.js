@@ -2,18 +2,29 @@ import styled, { css } from 'styled-components'
 
 const Td = styled.td`
     padding: 8px; 
+    border-left: 3px solid #7b6cfa;
+    
 
-    ${props => props.left && css`
-        text-align: left;
-    `}
+    @media screen and (min-width: 615px) {
+        border: 0;
+        padding: 8px;
 
-    ${props => props.center && css`
-        text-align: center;
-    `}
+        &:first-child {
+            border-left: 3px solid #7b6cfa;
+        }
 
-    ${props => props.right && css`
-        text-align: right;
-    `}
+        ${props => props.left && css`
+            text-align: left;
+        `}
+
+        ${props => props.center && css`
+            text-align: center;
+        `}
+
+        ${props => props.right && css`
+            text-align: right;
+        `}
+    }
 `
 
 export default Td

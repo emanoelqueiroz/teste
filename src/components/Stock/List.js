@@ -26,33 +26,6 @@ class List extends Component {
                     description: 'Bobina',
                     category: 'Componente Elétrico',
                     value: 60,
-                },
-                {
-                    id: 2,
-                    data: "2020-11-04",
-                    image: '',
-                    title: 'Lampida',
-                    description: 'Lampida',
-                    category: 'Componente Elétrico',
-                    value: 9.99,
-                },
-                {
-                    id: 3,
-                    data: "2020-11-04",
-                    image: '',
-                    title: 'Tomada',
-                    description: 'Tomada',
-                    category: 'Componente Elétrico',
-                    value: 8,
-                },
-                {
-                    id: 4,
-                    data: "2020-11-04",
-                    image: '',
-                    title: 'Circuito',
-                    description: 'Circuito',
-                    category: 'Componente Elétrico',
-                    value: 12,
                 }
             ]
         };
@@ -147,15 +120,32 @@ class List extends Component {
                     <tbody>
                         {this.state.produtos.length ? this.state.produtos.map(item => (
                             <Tr key={item.id}>
-                                <Td>{item.id}</Td>
-                                <Td center>{item.data}</Td>
+                                <Td>
+                                    <Th mobile>Cód.</Th>
+                                    {item.id}
+                                </Td>
                                 <Td center>
+                                    <Th mobile>Data de Aquisição</Th>
+                                    {item.data}
+                                </Td>
+                                <Td center>
+                                    <Th mobile>Imagem</Th>
                                     <TableImage src={item.image} />
                                 </Td>
-                                <Td>{item.title}</Td>
-                                <Td>{item.category}</Td>
-                                <Td right>{this.formatMoney(item.value)}</Td>
+                                <Td>
+                                    <Th mobile>Título</Th>
+                                    {item.title}
+                                </Td>
+                                <Td>
+                                    <Th mobile>Categoria</Th>
+                                    {item.category}
+                                </Td>
                                 <Td right>
+                                    <Th mobile>Valor</Th>
+                                    {this.formatMoney(item.value)}
+                                </Td>
+                                <Td right>
+                                    <Th mobile>Ações</Th>
                                     <Button onClick={() => this.updateItem(item)}>Editar</Button>
                                     <Button danger onClick={() => this.deleteItem(item)}>Excluir</Button>
                                 </Td>
